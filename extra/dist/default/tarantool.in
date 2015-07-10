@@ -6,6 +6,7 @@ default_cfg = {
     sophia_dir = "@TARANTOOL_DATADIR@", -- will become sophia_dir/sophia/instance/
     logger     = "/var/log/tarantool", -- logger/instance .. '.log'
     username   = "tarantool",
+    groupname  = "tarantool",
 }
 
 instance_dir = "@CMAKE_INSTALL_SYSCONFDIR@/tarantool/instances.enabled"
