@@ -55,6 +55,8 @@
 #include "cfg.h"
 #include "iobuf.h"
 #include "coio.h"
+#include "memcached_constants.h"
+#include "memcached.h"
 
 struct recovery_state *recovery;
 
@@ -710,6 +712,8 @@ box_init(void)
 	port_init();
 	iproto_init();
 	box_set_listen();
+	memcached_init();
+	memcached_set_listen("0.0.0.0:11211");
 
 	int rows_per_wal = box_check_rows_per_wal(cfg_geti("rows_per_wal"));
 	enum wal_mode wal_mode = box_check_wal_mode(cfg_gets("wal_mode"));
@@ -768,5 +772,5 @@ box_snapshot()
 const char *
 box_status(void)
 {
-    return status;
+	return status;
 }
