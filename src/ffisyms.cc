@@ -76,6 +76,7 @@ void *ffi_symbols[] = {
 	(void *) random_bytes,
 	(void *) fiber_time,
 	(void *) fiber_time64,
+	(void *) fiber_now,
 	(void *) tarantool_lua_slab_cache,
 	(void *) ibuf_create,
 	(void *) ibuf_destroy,

@@ -423,6 +423,14 @@ fiber_time64(void)
 	return (uint64_t) ( ev_now(loop()) * 1000000 + 0.5 );
 }
 
+inline double
+fiber_now(void)
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return (double) ts.tv_sec + ts.tv_nsec / 1e9;
+}
+
 #if defined(__cplusplus)
 } /* extern "C" */
 #endif /* defined(__cplusplus) */
