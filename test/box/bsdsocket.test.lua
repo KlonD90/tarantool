@@ -111,8 +111,6 @@ s:listen(128)
 
 sc = socket('PF_INET', 'SOCK_STREAM', 'tcp')
 
-sc:writable()
-sc:readable()
 sc:sysconnect('127.0.0.1', 3457) or errno() == errno.EINPROGRESS
 sc:writable(10)
 sc:write('Hello, world')
@@ -208,7 +206,6 @@ sc = socket('PF_INET', 'SOCK_STREAM', 'tcp')
 sc ~= nil
 sc:getsockopt('SOL_SOCKET', 'SO_ERROR')
 sc:nonblock(true)
-sc:readable()
 sc:sysconnect('127.0.0.1', 3458) or errno() == errno.EINPROGRESS
 string.match(tostring(sc), ', peer') == nil
 sc:writable()
@@ -279,7 +276,6 @@ socket.tcp_connect('127.0.0.1', 80, 0.00000000001)
 port = 35490
 s = socket('AF_INET', 'SOCK_STREAM', 'tcp')
 s:bind('127.0.0.1', port)
-socket.tcp_connect('127.0.0.1', port), errno() == errno.ECONNREFUSED
 s:listen()
 sc, e = socket.tcp_connect('127.0.0.1', port), errno()
 sc ~= nil
@@ -503,7 +499,6 @@ os.remove(path)
 
 -- Test serializers with sockets
 s = socket('AF_UNIX', 'SOCK_STREAM', 0)
-x = s:wait()
 -- waiters is map
 s.waiters
 -- check __serialize hook
