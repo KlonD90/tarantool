@@ -8,7 +8,7 @@ fiber_time(void);
 uint64_t
 fiber_time64(void);
 double
-fiber_now(void);
+ev_time(void);
 double
 fiber_clock(void);
 ]]
@@ -22,7 +22,7 @@ local function fiber_time64()
 end
 
 local function fiber_now()
-    return ffi.C.fiber_now()
+    return ffi.C.ev_time()
 end
 
 local function fiber_clock()
@@ -32,6 +32,6 @@ end
 fiber.time = fiber_time
 fiber.time64 = fiber_time64
 fiber.now = fiber_now
-fiber.clock = fiber_clock
+fiber.thread_time = fiber_clock
 
 return fiber
